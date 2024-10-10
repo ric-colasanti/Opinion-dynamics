@@ -9,7 +9,7 @@ persons-own [
 ; Initialize the environment and the agents
 to setup
   clear-all
-  create-persons number-of-persons [
+  create-persons number-of-moderates [
     set opinion 1 - ( random-float 2 )
     set uncertainty initial-moderate-uncertainty
     setxy 0  scale-opinion
@@ -146,8 +146,8 @@ SLIDER
 30
 254
 63
-number-of-persons
-number-of-persons
+number-of-moderates
+number-of-moderates
 1
 100
 78.0
