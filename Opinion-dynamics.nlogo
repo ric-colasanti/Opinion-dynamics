@@ -6,15 +6,43 @@ persons-own [
 ]
 
 
+; Use patch labels to show roughly where the time steps are
+to label-time
+  let n-zeros floor log number-of-iterations 10
+  let inc 10 ^ n-zeros
+  if inc = number-of-iterations [
+    set inc inc - 1
+  ]
+  let n inc
+  while [ n < number-of-iterations ] [
+    ask patch (world-width * n / number-of-iterations) 1 [
+      set plabel (word n)
+    ]
+    set n n + inc
+  ]
+end
+
 ; Initialize the environment and the agents
 to setup
   clear-all
+
+  if label-time? [
+    label-time
+  ]
+
+  if use-setup-seed? [
+    random-seed setup-seed
+  ]
+
   create-persons number-of-moderates [
     set opinion 1 - ( random-float 2 )
     set uncertainty initial-moderate-uncertainty
     setxy 0  scale-opinion
+    set shape "circle"
+    set color grey
     pen-down
   ]
+
   let number-top  number-of-extremists / 2
   let number-bottom  number-of-extremists / 2
 
@@ -35,7 +63,12 @@ to setup
     set color blue
     pen-down
   ]
- reset-ticks
+
+  if use-setup-seed? [
+    random-seed new-seed
+  ]
+
+  reset-ticks
 end
 
 
@@ -47,7 +80,7 @@ end
 
 ; Update the opinion and uncertainty of an agent based on the chosen opinion update rule
 to update
-  let y ticks / number-of-iterations * max-pycor
+  let x (ticks / number-of-iterations) * max-pxcor
   run equation
   if opinion > 1 [
     set opinion 1
@@ -55,7 +88,7 @@ to update
   if opinion < -1 [
     set opinion  -1
   ]
-  setxy y  scale-opinion
+  setxy x  scale-opinion
 end
 
 
@@ -111,13 +144,12 @@ to go
     stop
   ])
   tick
-  wait 0.1
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
 270
 30
-707
+915
 468
 -1
 -1
@@ -132,7 +164,7 @@ GRAPHICS-WINDOW
 0
 1
 0
-32
+48
 0
 32
 0
@@ -149,8 +181,8 @@ SLIDER
 number-of-moderates
 number-of-moderates
 1
-100
-78.0
+200
+100.0
 1
 1
 NIL
@@ -180,10 +212,10 @@ SLIDER
 228
 number-of-iterations
 number-of-iterations
-1
-500
-100.0
-1
+100
+10000
+5000.0
+100
 1
 NIL
 HORIZONTAL
@@ -240,7 +272,7 @@ SLIDER
 number-of-extremists
 number-of-extremists
 0
-10
+20
 10.0
 2
 1
@@ -256,7 +288,7 @@ initial-extremist-uncertainty
 initial-extremist-uncertainty
 0.0
 1.0
-0.07
+0.05
 0.01
 1
 NIL
@@ -271,11 +303,78 @@ initial-moderate-uncertainty
 initial-moderate-uncertainty
 0.0
 1
-0.45
+0.6
 0.01
 1
 NIL
 HORIZONTAL
+
+SWITCH
+10
+345
+132
+378
+label-time?
+label-time?
+0
+1
+-1000
+
+BUTTON
+140
+345
+250
+378
+paper-params
+set number-of-moderates 100\nset number-of-extremists 10\nset initial-extremist-uncertainty 0.05\nset initial-moderate-uncertainty 0.6\nset number-of-iterations 5000
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+INPUTBOX
+10
+390
+115
+460
+setup-seed
+1.936057949E9
+1
+0
+Number
+
+SWITCH
+120
+390
+260
+423
+use-setup-seed?
+use-setup-seed?
+0
+1
+-1000
+
+BUTTON
+120
+425
+260
+458
+choose-setup-seed
+set setup-seed new-seed
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
 
 @#$#@#$#@
 ## Overview:
