@@ -417,6 +417,8 @@ The model outputs the opinions and uncertainties of the persons over time. The u
 ## References
 
 Rainer, Hegselmann, and Ulrich Krause. "Opinion dynamics and bounded confidence: models, analysis and simulation." (2002).
+
+Deffuant, Guillaume, Frédéric Amblard, and Gérard Weisbuch. "Modelling group opinion shift to extreme: the smooth bounded confidence model." arXiv preprint cond-mat/0410199 (2004).
 @#$#@#$#@
 default
 true
