@@ -1,6 +1,8 @@
 # Opinion-dynamics
 NetLogo Opinion dynamics 
 
+This model illustrates the sensitivity of some models to the assumptions made. Specifically, we examine an opinion-dynamic model that utilizes different methods for the update function of individual opinion changes. The model employs either the Deffuant or Edmonds update rules, which provide a smooth effect on the influence. The opinion update rules take into account the distance between individuals' opinions and their uncertainty levels.
+
 ## Overview:
 
 Purpose: The model simulates the opinion dynamics of a group of persons with different levels of extremism and uncertainty.
