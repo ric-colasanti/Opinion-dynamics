@@ -94,11 +94,17 @@ end
 
 ; Calculate the interaction strength between two agents based on their uncertainty levels and the opinion distance
 to-report g [ u  d ]
+  if d = 0 [
+    report 0
+  ]
   report exp (-1 * (d / u) ^ 2)
 end
 
 ; Calculate the interaction strength between two agents based on their uncertainty levels and the opinion distance
 to-report f [ u d ]
+  if d = 0 [
+    report 0
+  ]
   report 1 / (1 + (1.361 * ((abs d) / u)) ^ 3)
 end
 
@@ -213,8 +219,8 @@ SLIDER
 number-of-iterations
 number-of-iterations
 100
-10000
-5000.0
+9900
+9900.0
 100
 1
 NIL
@@ -343,7 +349,7 @@ INPUTBOX
 115
 460
 setup-seed
-1.936057949E9
+7.59860425E8
 1
 0
 Number
@@ -355,7 +361,7 @@ SWITCH
 423
 use-setup-seed?
 use-setup-seed?
-0
+1
 1
 -1000
 
