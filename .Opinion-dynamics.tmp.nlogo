@@ -413,10 +413,6 @@ The deffuant and edmonds procedures implement the Deffuant and Edmonds opinion u
 
 ## Output: 
 The model outputs the opinions and uncertainties of the persons over time. The user can visualize the simulation and observe the emergent behavior of the collective.
-
-## References
-
-Rainer, Hegselmann, and Ulrich Krause. "Opinion dynamics and bounded confidence: models, analysis and simulation." (2002).
 @#$#@#$#@
 default
 true
